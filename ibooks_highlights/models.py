@@ -1,6 +1,7 @@
 import re
 import pathlib
 import datetime as dt
+import urllib.parse
 
 import frontmatter
 from typing import (List, Dict, Optional, Union, Any, Callable)
@@ -127,6 +128,7 @@ class Book(object):
             mod = '*'
         return f'{asset_id} {mod} {self.num_annotations}\t{self._title}'
 
+    # I need umläuts :-)
     def _yaml_str(cls, txt: str) -> str:
         exp = '[^A-Za-z0-9 ]+'
         return re.sub(exp, '', txt)
@@ -139,7 +141,8 @@ class Book(object):
     def author(self, value: str) -> None:
         if value is None:
             value = 'Unknown'
-        self._author = self._yaml_str(value)
+        #self._author = self._yaml_str(value)
+        self._author = value
 
     @property
     def title(self) -> str:
@@ -150,7 +153,8 @@ class Book(object):
 
         if value is None:
             value = 'Unknown'
-        self._title = self._yaml_str(value)
+        #self._title = self._yaml_str(value)
+        self._title = value
 
         slug = slugify(value)
         asset_id = self._asset_id[:8].lower()
@@ -203,6 +207,8 @@ class Book(object):
         md = template.render(
             title=self._title,
             author=self._author,
+            title_encoded=urllib.parse.quote_plus(self._title),
+            author_encoded=urllib.parse.quote_plus(self._author),
             highlights=self.annotations,
             reader_notes=self._reader_notes
         )
