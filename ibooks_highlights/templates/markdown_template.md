@@ -1,6 +1,5 @@
-# {{ title }}
-
-By {{author}}
+# [{{title}}](x-devonthink-item://) [🕵️‍♀️](x-devonthink://search?query={{title_encoded}})
+[{{author}}](x-devonthink://search?query={{author_encoded}})
 
 ## My notes <a name="my_notes_dont_delete"></a>
 
