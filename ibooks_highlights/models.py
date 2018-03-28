@@ -207,8 +207,8 @@ class Book(object):
         md = template.render(
             title=self._title,
             author=self._author,
-            title_encoded=urllib.parse.quote_plus(self._title),
-            author_encoded=urllib.parse.quote_plus(self._author),
+            title_encoded=urllib.parse.quote(self._title),
+            author_encoded=urllib.parse.quote(self._author),
             highlights=self.annotations,
             reader_notes=self._reader_notes
         )
