@@ -18,7 +18,7 @@
 {% endif %}
 
 {# print the quote #}
-{{ h.selected_text }}{% if h.note is not none and h.note|length > 0 %}  _NOTE: {{ h.note }}_{% endif %}
+{% if h.style is eq "3" %}#### {% endif %}{% if h.style is eq "5" %}##### {% endif %}{{ h.selected_text }}{% if h.note is not none and h.note|length > 0 %}  _NOTE: {{ h.note }}_{% endif %}
 
 {% endif %}
 {% endfor %}
